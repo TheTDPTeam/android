@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="15"
+    android:layout_margin="10dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/login_logo_aptech"/>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="70dp"
+            android:background="@drawable/layout_border">
+            <TextView
+                android:padding="@dimen/index_margin_top"
+                android:layout_width="@dimen/index_textview_update"
+                android:layout_height="match_parent"
+                android:text="Update: 2018/12/12"
+                android:gravity="bottom"
+                android:textSize="@dimen/index_textsize_small"
+                android:textStyle="italic"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Khoá đào tạo"
+                    android:textSize="@dimen/index_textsize_big"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:padding="@dimen/index_margin_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chi tiết các khóa đào tạo i13,i15,i17,..."
+                    android:textSize="@dimen/index_textsize_small"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/blue"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="70dp"
+            android:background="@drawable/layout_border">
+            <TextView
+                android:padding="5dp"
+                android:layout_width="@dimen/index_textview_update"
+                android:layout_height="match_parent"
+                android:text="Update: 2018/12/12"
+                android:gravity="bottom"
+                android:textSize="@dimen/index_textsize_small"
+                android:textStyle="italic"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lịch học các lớp"
+                    android:textSize="@dimen/index_textsize_big"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:padding="@dimen/index_margin_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/index_textsize_small"
+                    android:text="Thông tin về thời khóa biểu của các lớp Softech-Aptech."
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/blue"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="70dp"
+            android:background="@drawable/layout_border">
+            <TextView
+                android:padding="5dp"
+                android:layout_width="@dimen/index_textview_update"
+                android:layout_height="match_parent"
+                android:text="Update: 2018/12/12"
+                android:textSize="@dimen/index_textsize_small"
+                android:gravity="bottom"
+                android:textStyle="italic"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Đội ngủ nhân viên"
+                    android:textSize="@dimen/index_textsize_big"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:paddingLeft="@dimen/index_margin_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin chi tiết:"
+                    android:textSize="@dimen/index_textsize_small"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:paddingLeft="@dimen/index_margin_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/index_textsize_small"
+                    android:text="- Thông tin cơ bản nhân viên trung tâm"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:paddingLeft="@dimen/index_margin_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/index_textsize_small"
+                    android:text="- Cách thức liên lac"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/blue"/>
+    </RelativeLayout>
+</LinearLayout>
