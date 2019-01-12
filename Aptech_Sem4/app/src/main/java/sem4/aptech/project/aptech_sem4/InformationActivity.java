@@ -1,9 +1,15 @@
 package sem4.aptech.project.aptech_sem4;
 
+import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 import adapter.ViewPagerAdapter;
+import controller.InformationController;
 import fragment.FragmentCourse;
 import fragment.FragmentInfor;
 
@@ -11,6 +17,7 @@ public class InformationActivity extends BaseActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private ViewPagerAdapter viewPagerAdapter;
+    private InformationController informationController;
 
     @Override
     protected void setContentView() {
@@ -19,6 +26,7 @@ public class InformationActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        informationController = InformationController.getInstance();
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new FragmentInfor(), "Info");
         viewPagerAdapter.addFragment(new FragmentCourse(), "Course");
@@ -38,6 +46,17 @@ public class InformationActivity extends BaseActivity {
 
     @Override
     protected void addListener() {
-
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    informationController.get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

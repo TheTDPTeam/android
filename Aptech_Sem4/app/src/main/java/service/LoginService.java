@@ -14,17 +14,23 @@ import model.outputs.LoginReponse;
 public class LoginService extends AbstractHttpApi {
     private static LoginService loginService;
     private static LoginReponse loginReponse;
-    private static Gson gson;
+    private Gson gson;
     private LoginService(){
-
+        gson = new Gson();
     }
 
     public static LoginService getInstance(){
         if(loginService == null){
             loginService = new LoginService();
-            gson = new Gson();
         }
         return loginService;
+    }
+
+    public static String getToken(){
+        if(loginReponse == null){
+            return "";
+        }
+        return loginReponse.getToken();
     }
 
     public boolean login(String userName, String password) {
