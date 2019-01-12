@@ -3,27 +3,27 @@ package model.inputs;
 import java.io.Serializable;
 
 public class LoginDto implements Serializable{
-    private String Email;
-    private String Password;
+    private String email;
+    private String password;
 
-    public LoginDto(String email, String password) {
-        Email = email;
-        Password = password;
+    public LoginDto(String _email, String _password) {
+        this.email = _email;
+        this.password = _password;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 }

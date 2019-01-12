@@ -1,30 +1,43 @@
 package sem4.aptech.project.aptech_sem4;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 
 import adapter.ViewPagerAdapter;
 import fragment.FragmentCourse;
 import fragment.FragmentInfor;
 
-public class InformationActivity extends AppCompatActivity {
+public class InformationActivity extends BaseActivity {
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setContentView() {
         setContentView(R.layout.activity_information);
+    }
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+    @Override
+    protected void init() {
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new FragmentInfor(), "Info");
+        viewPagerAdapter.addFragment(new FragmentCourse(), "Course");
+    }
 
-        // Add Fragments to adapter one by one
-        adapter.addFragment(new FragmentInfor(), "Info");
-        adapter.addFragment(new FragmentCourse(), "Course");
-        viewPager.setAdapter(adapter);
+    @Override
+    protected void getWidget() {
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        tabLayout= (TabLayout) findViewById(R.id.tabs);
+    }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+    @Override
+    protected void setWidget() {
+        viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    protected void addListener() {
+
     }
 }
