@@ -36,7 +36,7 @@ public class LoginService extends AbstractHttpApi {
     public boolean login(String userName, String password) {
 
         try {
-            LoginDto myData = new LoginDto("Minhtritruong0209@gmail.com", "4eJAyOW8");
+            LoginDto myData = new LoginDto("nguyencongphu98@gmail.com", "rEdUTQay");
 
             String jsonObject = gson.toJson(myData);
 
@@ -44,7 +44,11 @@ public class LoginService extends AbstractHttpApi {
 
             loginReponse = gson.fromJson(response, LoginReponse.class);
 
-            return true;
+            if(loginReponse.getToken() != null){
+                return true;
+            }else {
+                return false;
+            }
         }catch (IOException e){
             return false;
         }catch (JSONException e){

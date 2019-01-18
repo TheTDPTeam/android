@@ -71,7 +71,13 @@ public class LoginActivity extends BaseActivity{
                                 }
                             });
                         }else{
-                            Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG);
+                                }
+                            });
                         };
                     }
                 });

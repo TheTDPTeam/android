@@ -1,17 +1,30 @@
 package fragment;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
+import controller.InformationController;
+import model.outputs.UserDetail;
 import sem4.aptech.project.aptech_sem4.R;
 
-public class FragmentInfor extends Fragment {
+public class FragmentInfor extends Fragment implements BaseFragment{
+    private UserDetail userDetail;
+    private InformationController informationController;
+    private EditText et_mail;
+    private EditText et_name;
+    private EditText et_phone;
+    private View view;
 
     public FragmentInfor() {
-        // Required empty public constructor
     }
 
     @Override
@@ -23,7 +36,55 @@ public class FragmentInfor extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_infor, container, false);
+        view = inflater.inflate(R.layout.fragment_infor, container, false);
+
+        init();
+        getWidget(view);
+        setWidget();
+
+        return view;
     }
 
+    @Override
+    public void init(){
+        informationController = InformationController.getInstance();
+    }
+
+    @Override
+    public void getWidget(View v){
+        et_mail = (EditText) v.findViewById(R.id.et_info_mail);
+        et_name = (EditText) v.findViewById(R.id.et_info_name);
+        et_phone = (EditText) v.findViewById(R.id.et_info_phone);
+    }
+
+    @Override
+    public void setWidget(){
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    userDetail = informationController.get();
+                    if(userDetail.getEmail() != null){
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                et_mail.setText(userDetail.getEmail());
+                                et_name.setText(userDetail.getFullName());
+                                et_phone.setText(userDetail.getPhone());
+                            }
+                        });
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void addListener(){
+
+    }
 }

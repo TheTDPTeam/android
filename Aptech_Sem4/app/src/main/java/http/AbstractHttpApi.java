@@ -191,7 +191,7 @@ public abstract class AbstractHttpApi{
 //        if (status == HttpURLConnection.HTTP_OK) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    status == HttpURLConnection.HTTP_OK ? connection.getInputStream() : connection.getErrorStream()));
+                    (status == HttpURLConnection.HTTP_OK || status == HttpURLConnection.HTTP_ACCEPTED)? connection.getInputStream() : connection.getErrorStream()));
             String line = null;
             while ((line = reader.readLine()) != null) {
                 response.append(line);

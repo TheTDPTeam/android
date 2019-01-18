@@ -4,6 +4,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
+import model.outputs.UserDetail;
 import service.InformationService;
 
 public class InformationController {
@@ -21,7 +22,7 @@ public class InformationController {
         return informationController;
     }
 
-    public void get() throws IOException, JSONException {
-        informationService.get();
+    public UserDetail get() throws IOException, JSONException {
+        return informationService.get();
     }
 }
