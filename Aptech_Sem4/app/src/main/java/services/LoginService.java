@@ -1,4 +1,4 @@
-package service;
+package services;
 
 import com.google.gson.Gson;
 
@@ -8,15 +8,17 @@ import java.io.IOException;
 
 import constant.UrlAPI;
 import http.AbstractHttpApi;
-import model.inputs.LoginDto;
-import model.outputs.LoginReponse;
+import models.inputs.LoginDto;
+import models.outputs.LoginReponseDto;
 
 public class LoginService extends AbstractHttpApi {
     private static LoginService loginService;
-    private static LoginReponse loginReponse;
+    private CurrentUserService currentUserService;
     private Gson gson;
     private LoginService(){
+
         gson = new Gson();
+        currentUserService = CurrentUserService.getInstance();
     }
 
     public static LoginService getInstance(){
@@ -24,13 +26,6 @@ public class LoginService extends AbstractHttpApi {
             loginService = new LoginService();
         }
         return loginService;
-    }
-
-    public static String getToken(){
-        if(loginReponse == null){
-            return "";
-        }
-        return loginReponse.getToken();
     }
 
     public boolean login(String userName, String password) {
@@ -42,9 +37,9 @@ public class LoginService extends AbstractHttpApi {
 
             String response = executeHttpPost(UrlAPI.loginPath,null,jsonObject);
 
-            loginReponse = gson.fromJson(response, LoginReponse.class);
+            currentUserService.setCurrentUser(gson.fromJson(response, LoginReponseDto.class));
 
-            if(loginReponse.getToken() != null){
+            if(currentUserService.getToken() != null){
                 return true;
             }else {
                 return false;

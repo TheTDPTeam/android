@@ -1,8 +1,8 @@
-package model.outputs;
+package models.outputs;
 
 import java.io.Serializable;
 
-public class LoginReponse implements Serializable {
+public class LoginReponseDto implements Serializable {
     private String email;
     private String token;
 

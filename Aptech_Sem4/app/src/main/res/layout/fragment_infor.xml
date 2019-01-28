@@ -39,7 +39,7 @@
             android:layout_height="@dimen/icon_height"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:background="@drawable/infor_email"/>
+            android:background="@drawable/infor_user"/>
         <EditText
             android:id="@+id/et_info_name"
             android:paddingLeft="10dp"

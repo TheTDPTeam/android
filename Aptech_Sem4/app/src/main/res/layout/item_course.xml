@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/text_padding">
     <TextView
+        android:id="@+id/tv_course_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Basic C#"
@@ -17,18 +18,21 @@
         android:orientation="vertical"
         android:background="@drawable/layout_border">
         <TextView
+            android:id="@+id/tv_course_socreTheory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Socre Theory : 8.25"
             android:padding="@dimen/text_padding"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/tv_course_socrePractice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Socre Practice : 8.25"
             android:padding="@dimen/text_padding"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/tv_course_socreRoll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Roll-call : 6/10"
@@ -52,10 +56,10 @@
                 android:paddingBottom="@dimen/text_padding"/>
 
             <ImageView
+                android:id="@+id/imv_course_check"
                 android:layout_weight="2"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/infor_phone_yes" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package model.inputs;
+package models.inputs;
 
 import java.io.Serializable;
 

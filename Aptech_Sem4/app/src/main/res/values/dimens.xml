@@ -16,4 +16,8 @@
     <dimen name="infor_textsize_big">20dp</dimen>
     <dimen name="padding_text_infor">20dp</dimen>
     <dimen name="text_size_calendar">30sp</dimen>
+
+    <!-- Announce-->
+    <dimen name="announce_title">20sp</dimen>
+    <dimen name="announce_content">18sp</dimen>
 </resources>

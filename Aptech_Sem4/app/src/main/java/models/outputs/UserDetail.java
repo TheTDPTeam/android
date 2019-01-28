@@ -1,11 +1,26 @@
-package model.outputs;
+package models.outputs;
 
-public class UserDetail {
+import java.io.Serializable;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class UserDetail extends RealmObject implements Serializable {
+    @PrimaryKey
+    private int id;
     private String email;
     private String fullName;
     private String phone;
 
     public UserDetail() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {

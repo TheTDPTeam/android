@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    android:background="@drawable/layout_border_radius"
-    android:weightSum="2">
+    android:layout_width="wrap_content"
+    android:layout_height="200dp"
+    android:padding="5dp"
+    android:background="@drawable/layout_border">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="100dp"
+        android:id="@+id/imv_employee"
         android:background="@drawable/login_logo_aptech"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="3">
 
@@ -26,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:id="@+id/tv_employee_name"
                 android:text="Nguyen Cong Phu"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -35,18 +34,21 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:weightSum="5">
+            android:weightSum="6">
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/login_password"/>
+                android:maxHeight="20dp"
+                android:background="@drawable/infor_phone"/>
             <TextView
                 android:paddingLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:text="09090909090"
+                android:maxHeight="20dp"
+                android:id="@+id/tv_employee_phone"
                 android:textStyle="bold"
                 android:gravity="fill_vertical"/>
         </LinearLayout>
@@ -56,17 +58,18 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:weightSum="5">
+            android:weightSum="6">
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/login_password"/>
+                android:background="@drawable/infor_email"/>
             <TextView
                 android:paddingLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="5"
+                android:id="@+id/tv_employee_email"
                 android:text="nguyencongphu@gmail.com"
                 android:textStyle="bold"
                 android:gravity="fill_vertical"/>

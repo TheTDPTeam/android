@@ -1,10 +1,10 @@
-package fragment;
+package fragments;
 
 import android.view.View;
 
 public interface BaseFragment {
-    void init();
+    void init() throws Exception;
     void getWidget(View v);
-    void setWidget();
+    void setWidget() throws Exception;
     void addListener();
 }

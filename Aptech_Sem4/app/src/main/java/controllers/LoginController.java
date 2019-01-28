@@ -1,6 +1,6 @@
-package controller;
+package controllers;
 
-import service.LoginService;
+import services.LoginService;
 
 public class LoginController {
     private static LoginController loginController;

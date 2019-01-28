@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import service.LoginService;
+import services.LoginService;
 
 
 public class LoginActivity extends BaseActivity{

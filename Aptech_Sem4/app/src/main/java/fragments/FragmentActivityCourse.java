@@ -1,4 +1,4 @@
-package fragment;
+package fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import sem4.aptech.project.aptech_sem4.R;
 
-public class FragmentCourse extends Fragment {
+public class FragmentActivityCourse extends Fragment implements BaseFragment{
 
-    public FragmentCourse() {
+    public FragmentActivityCourse() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,26 @@ public class FragmentCourse extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_course, container, false);
+        return inflater.inflate(R.layout.fragment_activity_course, container, false);
     }
 
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void getWidget(View v) {
+
+    }
+
+    @Override
+    public void setWidget() {
+
+    }
+
+    @Override
+    public void addListener() {
+
+    }
 }

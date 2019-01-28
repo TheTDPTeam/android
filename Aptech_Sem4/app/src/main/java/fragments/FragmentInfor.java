@@ -1,4 +1,4 @@
-package fragment;
+package fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,13 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-
-import controller.InformationController;
-import model.outputs.UserDetail;
+import controllers.InformationController;
+import models.outputs.UserDetail;
 import sem4.aptech.project.aptech_sem4.R;
 
 public class FragmentInfor extends Fragment implements BaseFragment{
@@ -60,8 +57,8 @@ public class FragmentInfor extends Fragment implements BaseFragment{
     @Override
     public void setWidget(){
         AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
+                @Override
+                public void run() {
                 try {
                     userDetail = informationController.get();
                     if(userDetail.getEmail() != null){
@@ -74,10 +71,13 @@ public class FragmentInfor extends Fragment implements BaseFragment{
                             }
                         });
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getContext(),getString(R.string.error_message), Toast.LENGTH_LONG);
+                        }
+                    });
                 }
             }
         });
