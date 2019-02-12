@@ -20,4 +20,8 @@
     <!-- Announce-->
     <dimen name="announce_title">20sp</dimen>
     <dimen name="announce_content">18sp</dimen>
+    <dimen name="textsize_calendar">20sp</dimen>
+    <dimen name="home_image_height">130dp</dimen>
+    <dimen name="home_image_width">200dp</dimen>
+
 </resources>

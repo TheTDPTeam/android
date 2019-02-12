@@ -26,22 +26,13 @@
             android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.CALL" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".InformationActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".AnnounceActivity"
+            android:name=".NavigationActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -53,7 +44,25 @@
             android:name=".EmployeeActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.CALL" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CourseActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CalendarActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

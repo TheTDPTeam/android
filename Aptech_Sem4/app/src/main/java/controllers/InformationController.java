@@ -1,11 +1,7 @@
 package controllers;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
-
-import models.outputs.CourseDetailDto;
+import models.outputs.CourseSemesterDto;
 import models.outputs.UserDetail;
 import services.InformationService;
 
@@ -28,7 +24,7 @@ public class InformationController {
         return informationService.get();
     }
 
-    public ArrayList<CourseDetailDto> getCourseDetails() throws Exception{
+    public ArrayList<CourseSemesterDto> getCourseDetails() throws Exception{
         return informationService.getCourseDetails();
     }
 }

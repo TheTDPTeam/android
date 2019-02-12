@@ -25,4 +25,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void getWidget();
     protected abstract void setWidget();
     protected abstract void addListener();
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

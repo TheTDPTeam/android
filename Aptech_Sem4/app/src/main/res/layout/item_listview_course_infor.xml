@@ -7,8 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/infor_email"/>
-    <EditText
-        android:enabled="false"
+    <TextView
+        android:id="@+id/tv_activity_course_subject_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_text_infor"

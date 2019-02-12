@@ -24,4 +24,21 @@
     <string name="socre_theory">Socre Theory :  </string>
     <string name="socre_practice">Socre Practice :  </string>
     <string name="roll_call">Roll-call :  </string>
+
+    <!-- Calendar-->
+    <string name="calendar_subject">Subject</string>
+    <string name="calendar_teacher">Teacher</string>
+    <string name="calendar_status">Status</string>
+    <string name="calendar_attendance">Attendance</string>
+
+    <string name="current_date">June, 2016</string>
+    <string name="add_event">ADD CALENDAR EVENT</string>
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+    <string name="last_date">30</string>
 </resources>

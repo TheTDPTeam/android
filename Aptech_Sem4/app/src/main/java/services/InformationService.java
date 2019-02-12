@@ -1,21 +1,14 @@
 package services;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-
-import java.io.EOFException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import adapter.FakeData;
 import constant.UrlAPI;
 import http.AbstractHttpApi;
-import models.outputs.CourseDetailDto;
+import models.outputs.CourseSemesterDto;
 import models.outputs.UserDetail;
 import realm.reponsitories.UserRealmRepository;
 
@@ -51,13 +44,13 @@ public class InformationService extends AbstractHttpApi {
 
     }
 
-    public ArrayList<CourseDetailDto> getCourseDetails() throws Exception{
+    public ArrayList<CourseSemesterDto> getCourseDetails() throws Exception{
         Map<String, String> header = new HashMap<String, String>();
         header.put("Authorization","Bearer " + CurrentUserService.getToken());
         //String response = executeHttpGet(UrlAPI.myDetail,header,null);
         try{
-            //ArrayList<CourseDetailDto> courses = gson.fromJson(response, new TypeToken<List<CourseDetailDto>>(){}.getType());
-            ArrayList<CourseDetailDto> courses = FakeData.getCourseDetails();
+            //ArrayList<CourseSemesterDto> courses = gson.fromJson(response, new TypeToken<List<CourseSemesterDto>>(){}.getType());
+            ArrayList<CourseSemesterDto> courses = FakeData.getCourseDetails();
             return courses;
         }catch (Exception ex){
             throw new Exception();

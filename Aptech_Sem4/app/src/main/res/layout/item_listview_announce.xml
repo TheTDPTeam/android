@@ -3,11 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/tv_announce_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Today"
         android:textStyle="italic"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:textSize="@dimen/announce_content"/>
     <ListView
         android:id="@+id/lv_announce_detail"

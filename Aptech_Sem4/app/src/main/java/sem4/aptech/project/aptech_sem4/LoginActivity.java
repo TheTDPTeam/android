@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity{
                                 @Override
                                 public void run() {
                                     progressBar.setVisibility(View.GONE);
-                                    Intent intent = new Intent(getApplicationContext(), InformationActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
