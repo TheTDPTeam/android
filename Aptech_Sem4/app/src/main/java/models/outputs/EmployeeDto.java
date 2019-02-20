@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class EmployeeDto implements Serializable {
     private String imageUrl;
-    private String name;
-    private String phone;
+    private String fullName;
+    private String phoneNumber;
     private String email;
 
     public EmployeeDto() {
@@ -13,8 +13,8 @@ public class EmployeeDto implements Serializable {
 
     public EmployeeDto(String imageUrl, String name, String phone, String mail) {
         this.imageUrl = imageUrl;
-        this.name = name;
-        this.phone = phone;
+        this.fullName = name;
+        this.phoneNumber = phone;
         this.email = mail;
     }
 
@@ -27,19 +27,19 @@ public class EmployeeDto implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return fullName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.fullName = name;
     }
 
     public String getPhone() {
-        return phone;
+        return phoneNumber;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phoneNumber = phone;
     }
 
     public String getEmail() {

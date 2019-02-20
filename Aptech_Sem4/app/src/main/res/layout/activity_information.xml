@@ -14,15 +14,28 @@
         android:layout_weight="2"
         android:orientation="vertical"
         android:background="#FFB000">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FF00"
+                android:text="Logout"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
         <TextView
-            android:textAlignment="center"
-            android:paddingTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="20dp"
             android:text="@string/infor_average_score"
-            android:textStyle="bold"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="@dimen/login_textsize"/>
+            android:textSize="@dimen/textsize_average_score"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +109,8 @@
             android:layout_height="wrap_content"
             app:tabMode="scrollable"
             app:tabTextColor="#FFB000"
-            app:tabGravity="fill"/>
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/orange"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"

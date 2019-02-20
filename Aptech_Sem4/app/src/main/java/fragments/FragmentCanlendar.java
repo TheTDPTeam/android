@@ -2,35 +2,35 @@ package fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 
-import models.outputs.CalendarDetailDto;
+import models.outputs.CalendarDto;
 import sem4.aptech.project.aptech_sem4.R;
 import view.CalendarCustomView;
 
 public class FragmentCanlendar extends Fragment implements BaseFragment {
     private View view;
     private CalendarCustomView calendarView;
-    private ArrayList<CalendarDetailDto> data;
+    private CalendarDto data;
 
-    public static FragmentCanlendar newInstance(ArrayList<CalendarDetailDto> dto) {
+    public static FragmentCanlendar newInstance(CalendarDto calendar) {
         FragmentCanlendar fragment = new FragmentCanlendar();
         Bundle bundle = new Bundle();
-        if(dto == null){
-            dto = new ArrayList<CalendarDetailDto>();
+        if(calendar == null){
+            calendar = new CalendarDto();
         }
-        bundle.putSerializable("data", dto);
+        bundle.putSerializable("data", calendar);
         fragment.setArguments(bundle);
         return fragment ;
     }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        data = (ArrayList<CalendarDetailDto>) getArguments().getSerializable("data");
+        data = (CalendarDto) getArguments().getSerializable("data");
     }
 
     @Override
@@ -67,11 +67,5 @@ public class FragmentCanlendar extends Fragment implements BaseFragment {
     @Override
     public void addListener()
     {
-        calendarView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 }

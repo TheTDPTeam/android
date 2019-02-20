@@ -1,6 +1,7 @@
 package sem4.aptech.project.aptech_sem4;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,6 +25,7 @@ public class LoginActivity extends BaseActivity{
     @Override
     protected void init() {
         loginService = LoginService.getInstance();
+        getSharedPreferences();
     }
 
     @Override
@@ -65,6 +67,8 @@ public class LoginActivity extends BaseActivity{
                                 @Override
                                 public void run() {
                                     progressBar.setVisibility(View.GONE);
+                                    saveSharedPreferences();
+
                                     Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -75,7 +79,7 @@ public class LoginActivity extends BaseActivity{
                                 @Override
                                 public void run() {
                                     progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG);
+                                    Toast.makeText(getApplicationContext(),"Login Failed", Toast.LENGTH_LONG).show();
                                 }
                             });
                         };
@@ -83,6 +87,38 @@ public class LoginActivity extends BaseActivity{
                 });
             }
         });
+    }
+
+    private void saveSharedPreferences(){
+        SharedPreferences pre = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor edit= pre.edit();
+        edit.putString("user", edt_username.getText().toString());
+        edit.putString("password", edt_password.getText().toString());
+        edit.commit();
+    }
+
+    private void getSharedPreferences(){
+        SharedPreferences pre=getSharedPreferences ("login",MODE_PRIVATE);
+        String user = pre.getString("user", "");
+        String password = pre.getString("password", "");
+
+        if (! (TextUtils.isEmpty(user) || TextUtils.isEmpty(password))) {
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    if(loginService.login(user, password)){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 }
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="7"
+    android:weightSum="8"
     android:layout_margin="20dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,13 +17,14 @@
             android:layout_weight="1"
             android:background="@drawable/infor_email"/>
         <EditText
+            android:enabled="false"
+            android:textColorHint="@color/orange"
             android:id="@+id/et_info_mail"
             android:paddingLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="9"
-            android:text="nguyencongphu@gmail.com"
-            android:enabled="false"
+            android:text=""
             android:textStyle="bold"
             android:gravity="fill_vertical"/>
     </LinearLayout>
@@ -41,13 +42,14 @@
             android:layout_gravity="center"
             android:background="@drawable/infor_user"/>
         <EditText
+            android:enabled="false"
+            android:textColorHint="@color/orange"
             android:id="@+id/et_info_name"
             android:paddingLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="9"
-            android:text="PhuNguyen"
-            android:enabled="false"
+            android:text=""
             android:textStyle="bold"
             android:gravity="fill_vertical"/>
     </LinearLayout>
@@ -65,14 +67,27 @@
             android:layout_gravity="center"
             android:background="@drawable/infor_phone"/>
         <EditText
+            android:enabled="false"
+            android:textColorHint="@color/orange"
             android:id="@+id/et_info_phone"
             android:paddingLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="9"
-            android:enabled="false"
-            android:text="0906582904"
+            android:text=""
             android:textStyle="bold"
             android:gravity="fill_vertical"/>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_height="0dp">
+        <ProgressBar
+            android:id="@+id/progress_circular_fragment_infor"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/orange"
+            android:visibility="visible"/>
+    </RelativeLayout>
 </LinearLayout>

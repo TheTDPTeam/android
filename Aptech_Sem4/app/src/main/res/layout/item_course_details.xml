@@ -45,7 +45,7 @@
             android:orientation="horizontal"
             android:weightSum="10">
             <TextView
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="FALILED"
@@ -54,10 +54,9 @@
                 android:paddingLeft="@dimen/text_padding"
                 android:paddingTop="@dimen/text_padding"
                 android:paddingBottom="@dimen/text_padding"/>
-
             <ImageView
                 android:id="@+id/imv_course_check"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
         </LinearLayout>

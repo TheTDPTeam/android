@@ -1,15 +1,25 @@
 package models.outputs;
 
 public class AnnounceDetailDto{
+    private int id;
     private String title;
     private String content;
 
     public AnnounceDetailDto() {
     }
 
-    public AnnounceDetailDto(String title, String content) {
+    public AnnounceDetailDto(int id, String title, String content) {
         this.title = title;
         this.content = content;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

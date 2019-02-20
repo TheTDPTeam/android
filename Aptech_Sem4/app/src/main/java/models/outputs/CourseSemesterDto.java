@@ -4,23 +4,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CourseSemesterDto implements Serializable {
-    private String name;
+    private String semesterName;
     private ArrayList<CourseDetailDto> subjects;
 
     public CourseSemesterDto() {
     }
 
     public CourseSemesterDto(String name, ArrayList<CourseDetailDto> subjects) {
-        this.name = name;
+        this.semesterName = name;
         this.subjects = subjects;
     }
 
     public String getName() {
-        return name;
+        return semesterName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.semesterName = name;
     }
 
     public ArrayList<CourseDetailDto> getSubjects() {

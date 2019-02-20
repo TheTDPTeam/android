@@ -1,8 +1,11 @@
 package services;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import adapter.FakeData;
@@ -47,10 +50,10 @@ public class InformationService extends AbstractHttpApi {
     public ArrayList<CourseSemesterDto> getCourseDetails() throws Exception{
         Map<String, String> header = new HashMap<String, String>();
         header.put("Authorization","Bearer " + CurrentUserService.getToken());
-        //String response = executeHttpGet(UrlAPI.myDetail,header,null);
+        String response = executeHttpGet(UrlAPI.myScore,header,null);
         try{
-            //ArrayList<CourseSemesterDto> courses = gson.fromJson(response, new TypeToken<List<CourseSemesterDto>>(){}.getType());
-            ArrayList<CourseSemesterDto> courses = FakeData.getCourseDetails();
+            ArrayList<CourseSemesterDto> courses = gson.fromJson(response, new TypeToken<List<CourseSemesterDto>>(){}.getType());
+            //ArrayList<CourseSemesterDto> courses = FakeData.getCourseDetails();
             return courses;
         }catch (Exception ex){
             throw new Exception();

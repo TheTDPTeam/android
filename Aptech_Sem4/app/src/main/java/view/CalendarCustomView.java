@@ -19,11 +19,12 @@ import java.util.List;
 import java.util.Locale;
 
 import adapter.GridAdapter;
-import models.outputs.CalendarDetailDto;
+import models.outputs.AttendanceDto;
+import models.outputs.CalendarDto;
 import sem4.aptech.project.aptech_sem4.R;
 
 public class CalendarCustomView extends LinearLayout {
-    private ArrayList<CalendarDetailDto> data;
+    private CalendarDto data;
     private static final String TAG = CalendarCustomView.class.getSimpleName();
     private ImageView previousButton, nextButton;
     private Button currentButton;
@@ -108,10 +109,10 @@ public class CalendarCustomView extends LinearLayout {
                 cal = Calendar.getInstance(Locale.ENGLISH);
                 currentDate.setText(formatter.format(cal.getTime()));
                 setUpCalendarAdapter();
-                for (CalendarDetailDto i: data)
+                if (data != null)
                 {
-                    if(setWidgetDetail(i, currentTime.getTime())){
-                        break;
+                    if(setWidgetDetail(data, currentTime.getTime())){
+                        //TODO
                     }
                 }
             }
@@ -153,36 +154,36 @@ public class CalendarCustomView extends LinearLayout {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView dateValue;
                 Date date = new Date();
-                for (CalendarDetailDto i: data)
+                if(date != null)
                 {
                     dateValue = (TextView) view.findViewById(R.id.tv1);
                     try {
                         date.setTime(Date.parse(dateValue.getText().toString()));
-                        if(setWidgetDetail(i,date)){
-                            break;
+                        if(setWidgetDetail(data,date)){
+                            //TODO
                         }
                     }catch (Exception ex){
-                        setWidgetDetail(i,null);
+                        setWidgetDetail(data,null);
                     }
                 }
             }
         });
     }
 
-    private boolean setWidgetDetail(CalendarDetailDto data, Date dateCompare){
+    private boolean setWidgetDetail(CalendarDto data, Date dateCompare){
         tv_teacher.setText("");
         tv_attendance.setText("");
         tv_status.setText("");
         tv_subject.setText("");
         if(dateCompare != null){
-            for (Date i: data.getDates())
+            for (AttendanceDto i: data.getAttendances())
             {
                 SimpleDateFormat dt1 = new SimpleDateFormat("yyyyy-mm-dd");
-                if(dt1.format(i).equals(dt1.format(dateCompare))){
-                    tv_teacher.setText(data.getTeacher());
-                    tv_attendance.setText(data.getAttendance());
-                    tv_status.setText(data.getStatus());
-                    tv_subject.setText(data.getSubject());
+                if(dt1.format(i.getCheckingDate()).equals(dt1.format(dateCompare))){
+                    tv_teacher.setText(data.getTeacherName());
+                    tv_attendance.setText(data.getCalendar());
+                    tv_status.setText(i.getStatus());
+                    tv_subject.setText(data.getSubjectName());
                     return true;
                 }
             }
@@ -190,26 +191,21 @@ public class CalendarCustomView extends LinearLayout {
         return false;
     }
 
-    public void setItems(ArrayList<CalendarDetailDto> data){
+    public void setItems(CalendarDto data){
         this.data = data;
         setUpCalendarAdapter();
-        for (CalendarDetailDto i: data)
-        {
-            if(setWidgetDetail(i, currentTime.getTime())){
-                break;
-            }
+
+        if(setWidgetDetail(data, currentTime.getTime())){
+            //TODO;
         }
     }
 
     private void setUpCalendarAdapter(){
         List<Date> dayValueInCells = new ArrayList<Date>();
 
-        ArrayList<Date> dates = new ArrayList<Date>();
+        ArrayList<AttendanceDto> attendances = new ArrayList<AttendanceDto>();
         if(data != null){
-            for (CalendarDetailDto i : data)
-            {
-                dates.addAll(i.getDates());
-            }
+            attendances.addAll(data.getAttendances());
         }
 
         Calendar mCal = (Calendar)cal.clone();
@@ -221,7 +217,7 @@ public class CalendarCustomView extends LinearLayout {
             mCal.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        mAdapter = new GridAdapter(context, dayValueInCells, cal, currentTime, dates);
+        mAdapter = new GridAdapter(context, dayValueInCells, cal, currentTime, attendances);
         calendarGridView.setAdapter(mAdapter);
     }
 }

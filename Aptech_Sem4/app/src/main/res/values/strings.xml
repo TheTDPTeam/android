@@ -16,7 +16,7 @@
     <string name="login_user">Please enter username</string>
     <string name="login_password">Please enter password</string>
     <string name="login_button">Sign in</string>
-    <string name="login_forgetpassword">Forgot pasword ?</string>
+    <string name="login_forgetpassword">Forgot pasword</string>
     <string name="employee_staff">STAFF</string>
     <string name="infor_average_score">AVERAGE SCORE</string>
 

@@ -3,30 +3,30 @@ package models.outputs;
 import java.util.ArrayList;
 
 public class CourseSemesterSubjectDto {
-    private String semester;
-    private ArrayList<String> subjects;
+    private String semesterName;
+    private ArrayList<SubjectDto> subjects;
 
     public CourseSemesterSubjectDto() {
     }
 
-    public CourseSemesterSubjectDto(String semester, ArrayList<String> subjects) {
-        this.semester = semester;
+    public CourseSemesterSubjectDto(String semester, ArrayList<SubjectDto> subjects) {
+        this.semesterName = semester;
         this.subjects = subjects;
     }
 
-    public String getSemester() {
-        return semester;
+    public String getSemesterName() {
+        return semesterName;
     }
 
-    public void setSemester(String semester) {
-        this.semester = semester;
+    public void setSemesterName(String semesterName) {
+        this.semesterName = semesterName;
     }
 
-    public ArrayList<String> getSubjects() {
+    public ArrayList<SubjectDto> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(ArrayList<String> subjects) {
+    public void setSubjects(ArrayList<SubjectDto> subjects) {
         this.subjects = subjects;
     }
 }

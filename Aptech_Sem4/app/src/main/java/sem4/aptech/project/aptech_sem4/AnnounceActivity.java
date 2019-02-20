@@ -3,12 +3,17 @@ package sem4.aptech.project.aptech_sem4;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.load.resource.bitmap.CenterInside;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,7 @@ import models.outputs.AnnounceDto;
 public class AnnounceActivity extends Fragment implements BaseFragment {
     private AnnounceController announceController;
     private ListView listView;
+    private ProgressBar progressBar;
     private CustomListAdapter<AnnounceDto> adapter;
     private ArrayList<AnnounceDto> items;
     private View view;
@@ -100,25 +106,33 @@ public class AnnounceActivity extends Fragment implements BaseFragment {
 
     @Override
     public void getWidget(View v) {
+        progressBar = (ProgressBar) v.findViewById(R.id.progress_circular_announce);
         listView = (ListView) v.findViewById(R.id.lv_announce);
     }
 
     @Override
     public void setWidget() {
+        progressBar.setVisibility(View.VISIBLE);
         listView.setAdapter(adapter);
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
                     items = announceController.getAnnounces();
-                    adapter.setItems(items);
-                    Utils.setListViewHeightBasedOnChildren(listView);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.setItems(items);
+                            Utils.setListViewHeightBasedOnChildren(listView);
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    });
                 }
                 catch (Exception ex){
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getActivity(),getString(R.string.error_message), Toast.LENGTH_LONG);
+                            Toast.makeText(getActivity(),getString(R.string.error_message), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

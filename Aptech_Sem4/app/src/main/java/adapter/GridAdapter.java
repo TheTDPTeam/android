@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import models.outputs.AttendanceDto;
 import sem4.aptech.project.aptech_sem4.R;
 
 public class GridAdapter extends ArrayAdapter {
@@ -22,12 +23,12 @@ public class GridAdapter extends ArrayAdapter {
     private List<Date> monthlyDates;
     private Calendar currentSelectedDate;
     private Calendar currentDate;
-    private List<Date> dateNotes;
-    public GridAdapter(Context context, List<Date> monthlyDates, Calendar currentSelectedDate, Calendar currentDate,List<Date> dateNotes) {
+    private List<AttendanceDto> attendances;
+    public GridAdapter(Context context, List<Date> monthlyDates, Calendar currentSelectedDate, Calendar currentDate,List<AttendanceDto> attendances) {
         super(context, R.layout.single_cell_layout);
         this.monthlyDates = monthlyDates;
         this.currentSelectedDate = currentSelectedDate;
-        this.dateNotes = dateNotes;
+        this.attendances = attendances;
         this.currentDate = currentDate;
         mInflater = LayoutInflater.from(context);
     }
@@ -47,13 +48,17 @@ public class GridAdapter extends ArrayAdapter {
         if(view == null){
             view = mInflater.inflate(R.layout.single_cell_layout, parent, false);
         }
+
         if(currentDate.get(Calendar.DAY_OF_MONTH) == dayValue && (currentDate.get(Calendar.MONTH) + 1) == displayMonth && currentDate.get(Calendar.YEAR) == displayYear){
             view.setBackgroundColor(Color.parseColor("#f75625"));
-        }else if(displayMonth == currentMonth && displayYear == currentYear){
+        }
+        else if(displayMonth == currentMonth && displayYear == currentYear){
             view.setBackgroundColor(Color.parseColor("#c6c4c4"));
-        }else{
+        }
+        else {
             view.setBackgroundColor(Color.parseColor("#eaeaea"));
         }
+
         //Add day to calendar
         TextView cellNumber = (TextView)view.findViewById(R.id.calendar_date_id);
         TextView cellValue = (TextView)view.findViewById(R.id.tv1);
@@ -61,12 +66,12 @@ public class GridAdapter extends ArrayAdapter {
         //Add events to the calendar
 
         Calendar noteCalendar = Calendar.getInstance();
-        for(int i = 0; i < dateNotes.size(); i++){
-            noteCalendar.setTime(dateNotes.get(i));
+        for(int i = 0; i < attendances.size(); i++){
+            noteCalendar.setTime(attendances.get(i).getCheckingDate());
             if(dayValue == noteCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == noteCalendar.get(Calendar.MONTH) + 1
                     && displayYear == noteCalendar.get(Calendar.YEAR)){
                 view.setBackgroundColor(Color.parseColor("#51ef39"));
-                cellValue.setText(dateNotes.get(i).toString());
+                cellValue.setText(attendances.get(i).getCheckingDate().toString());
             }
         }
         return view;

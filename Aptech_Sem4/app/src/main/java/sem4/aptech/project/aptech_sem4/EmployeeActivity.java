@@ -1,9 +1,11 @@
 package sem4.aptech.project.aptech_sem4;
 
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +20,12 @@ import adapter.ViewHolder;
 import controllers.EmployeeController;
 import models.outputs.EmployeeDto;
 
-public class EmployeeActivity extends BaseActivity implements SearchView.OnQueryTextListener{
+public class EmployeeActivity extends BaseActivity{
     private EmployeeController employeeController;
     private CustomListAdapter<EmployeeDto> adapter;
     private ArrayList<EmployeeDto> items;
     private GridView gridView;
-    private SearchView searchView;
+    private ProgressBar progressBar;
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_employee);
@@ -69,26 +71,35 @@ public class EmployeeActivity extends BaseActivity implements SearchView.OnQuery
 
     @Override
     protected void getWidget() {
+        progressBar = (ProgressBar) findViewById(R.id.progress_circular_employee);
         gridView = (GridView) findViewById(R.id.gv_employee);
-        searchView = (SearchView) findViewById(R.id.sv_employee);
+        gridView.setHorizontalSpacing(50);
+        gridView.setVerticalSpacing(50);
     }
 
     @Override
     protected void setWidget() {
+        progressBar.setVisibility(View.VISIBLE);
         gridView.setAdapter(adapter);
-        searchView.setOnQueryTextListener(this);
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
                     items = employeeController.getEmployees();
-                    adapter.setItems(items);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setVisibility(View.GONE);
+                            adapter.setItems(items);
+                        }
+                    });
                 }
                 catch (Exception ex){
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),getString(R.string.error_message), Toast.LENGTH_LONG);
+                            Toast.makeText(getApplicationContext(),getString(R.string.error_message), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -99,17 +110,5 @@ public class EmployeeActivity extends BaseActivity implements SearchView.OnQuery
     @Override
     protected void addListener() {
 
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        String text = newText;
-        //adapter.filter(text);
-        return false;
     }
 }

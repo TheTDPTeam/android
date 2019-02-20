@@ -2,6 +2,7 @@ package fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import adapter.ViewHolder;
 import common.Utils;
 import models.outputs.CourseDto;
 import models.outputs.CourseSemesterSubjectDto;
+import models.outputs.SubjectDto;
 import sem4.aptech.project.aptech_sem4.R;
 
 public class FragmentActivityCourse extends Fragment implements BaseFragment{
@@ -57,7 +59,7 @@ public class FragmentActivityCourse extends Fragment implements BaseFragment{
 
     @Override
     public void init() {
-        adapter = new CustomListAdapter<CourseSemesterSubjectDto>(getContext(), R.layout.item_listview_course, data.getDetails()) {
+        adapter = new CustomListAdapter<CourseSemesterSubjectDto>(getContext(), R.layout.item_listview_course, data.getSemesters()) {
             @Override
             protected void getViewHolder(ViewHolder vh, View v) {
                 vh.setTv_1((TextView) v.findViewById(R.id.tv_activity_course_semester));
@@ -65,26 +67,27 @@ public class FragmentActivityCourse extends Fragment implements BaseFragment{
             }
             @Override
             protected void setViewHolder(ViewHolder vh, CourseSemesterSubjectDto model) {
-                vh.getTv_1().setText(model.getSemester());
-
-                CustomListAdapter<String> adapterDetails = new CustomListAdapter<String>(getContext(), R.layout.item_listview_course_infor, model.getSubjects()) {
+                vh.getTv_1().setText(model.getSemesterName());
+                CustomListAdapter<SubjectDto> adapterDetails = new CustomListAdapter<SubjectDto>(getContext(), R.layout.item_listview_course_infor, model.getSubjects()) {
                     @Override
                     protected void getViewHolder(ViewHolder vh, View v) {
                         vh.setTv_1((TextView) v.findViewById(R.id.tv_activity_course_subject_name));
+                        vh.setTv_2((TextView) v.findViewById(R.id.tv_activity_course_subject_desc));
                     }
 
                     @Override
-                    protected void setViewHolder(ViewHolder vh, String model) {
-                        vh.getTv_1().setText(model);
+                    protected void setViewHolder(ViewHolder vh, SubjectDto model) {
+                        vh.getTv_1().setText(model.getName());
+                        vh.getTv_2().setText(model.getDescription());
                     }
 
                     @Override
-                    protected void addListener(ViewHolder vh, String model) {
+                    protected void addListener(ViewHolder vh, SubjectDto model) {
 
                     }
 
                     @Override
-                    protected List<String> modifyArrayAdapter(List<String> models) {
+                    protected List<SubjectDto> modifyArrayAdapter(List<SubjectDto> models) {
                         return models;
                     }
                 };

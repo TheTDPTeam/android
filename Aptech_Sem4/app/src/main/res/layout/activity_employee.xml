@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="15"
-    android:layout_margin="5dp">
-    <SearchView
-        android:id="@+id/sv_employee"
-        android:layout_weight="1"
+    android:orientation="vertical">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="search"
-        android:background="@drawable/layout_border_radius">
-        <requestFocus/>
-    </SearchView>
-    <TextView
+        android:layout_height="wrap_content"
+        android:background="@color/orange">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employees"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:text="@string/employee_staff"
-        android:gravity="center"/>
-
-    <GridView
-        android:id="@+id/gv_employee"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="12"
-        android:stretchMode="columnWidth"
-        android:numColumns="2">
-    </GridView>
+        android:layout_height="match_parent"
+        android:background="@color/gray_light"
+        android:padding="10dp">
+        <ProgressBar
+            android:id="@+id/progress_circular_employee"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:indeterminateTint="@color/orange"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+        <GridView
+            android:id="@+id/gv_employee"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchMode="columnWidth"
+            android:numColumns="2">
+        </GridView>
+    </RelativeLayout>
 </LinearLayout>

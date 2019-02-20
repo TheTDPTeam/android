@@ -4,22 +4,22 @@ import java.io.Serializable;
 
 public class CourseDetailDto implements Serializable {
     private int id;
-    private String name;
-    private Double socreTheory;
-    private Double socrePractice;
-    private String rollCall;
-    private boolean isSuccess;
+    private String subjectName;
+    private Double theoryScore;
+    private Double practicalScore;
+    private String attendingRate;
+    private boolean success;
 
     public CourseDetailDto() {
     }
 
     public CourseDetailDto(int id, String name, Double socreTheory, Double socrePractice, String rollCall, boolean isSuccess) {
         this.id = id;
-        this.name = name;
-        this.socreTheory = socreTheory;
-        this.socrePractice = socrePractice;
-        this.rollCall = rollCall;
-        this.isSuccess = isSuccess;
+        this.subjectName = name;
+        this.theoryScore = socreTheory;
+        this.practicalScore = socrePractice;
+        this.attendingRate = rollCall;
+        this.success = isSuccess;
     }
 
     public int getId() {
@@ -31,42 +31,42 @@ public class CourseDetailDto implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return subjectName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.subjectName = name;
     }
 
     public Double getSocreTheory() {
-        return socreTheory;
+        return theoryScore;
     }
 
     public void setSocreTheory(Double socreTheory) {
-        this.socreTheory = socreTheory;
+        this.theoryScore = socreTheory;
     }
 
     public Double getSocrePractice() {
-        return socrePractice;
+        return practicalScore;
     }
 
     public void setSocrePractice(Double socrePractice) {
-        this.socrePractice = socrePractice;
+        this.practicalScore = socrePractice;
     }
 
     public String getRollCall() {
-        return rollCall;
+        return attendingRate;
     }
 
     public void setRollCall(String rollCall) {
-        this.rollCall = rollCall;
+        this.attendingRate = rollCall;
     }
 
     public boolean isSuccess() {
-        return isSuccess;
+        return success;
     }
 
     public void setSuccess(boolean success) {
-        isSuccess = success;
+        success = success;
     }
 }

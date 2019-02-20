@@ -43,20 +43,34 @@ public class CalendarActivity extends BaseActivity {
             public void run() {
                 try {
                     items = calendarController.getCalendars();
+                    int index = 0;
                     if(items != null){
-                        for (CalendarDto i : items)
+                        for (int i = 0; i < items.size(); i++)
                         {
-                            adapter.addFragment(FragmentCanlendar.newInstance(i.getDetails()), i.getName());
+                            if(items.get(i).isForCurrentStudent()){
+                                index = i;
+                                adapter.addFragment(FragmentCanlendar.newInstance(items.get(i)), "My course");
+                            }else {
+                                adapter.addFragment(FragmentCanlendar.newInstance(items.get(i)), items.get(i).getClassCode());
+                            }
                         }
                     }
-                    viewPager.setAdapter(adapter);
-                    tabLayout.setupWithViewPager(viewPager);
+
+                    final int index1 = index;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            viewPager.setAdapter(adapter);
+                            tabLayout.setupWithViewPager(viewPager);
+                            tabLayout.getTabAt(index1).select();
+                        }
+                    });
                 }
                 catch (Exception ex){
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),getString(R.string.error_message), Toast.LENGTH_LONG);
+                            Toast.makeText(getApplicationContext(),getString(R.string.error_message), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

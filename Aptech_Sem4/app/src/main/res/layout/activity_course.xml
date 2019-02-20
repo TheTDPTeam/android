@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/progress_circular_course"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:indeterminateTint="@color/orange"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/actiobar_employee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Courses"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:background="@color/orange"/>
 
     <android.support.design.widget.TabLayout
+        android:layout_below="@id/actiobar_employee"
         android:id="@+id/tabs_course"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
-        app:tabGravity="fill"/>
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/orange"/>
 
     <android.support.v4.view.ViewPager
+        android:layout_below="@+id/tabs_course"
         android:id="@+id/pager_course"
-        android:layout_margin="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</LinearLayout>
+</RelativeLayout>

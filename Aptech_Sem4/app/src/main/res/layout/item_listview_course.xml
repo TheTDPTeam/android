@@ -3,10 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:paddingTop="20dp"
         android:id="@+id/tv_activity_course_semester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Học kì I"
+        android:textStyle="bold"
         android:textSize="@dimen/infor_textsize_big"/>
     <ListView
         android:id="@+id/lv_activity_course_semester"

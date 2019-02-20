@@ -2,18 +2,17 @@ package adapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.zip.DataFormatException;
 
 import models.outputs.AnnounceDetailDto;
 import models.outputs.AnnounceDto;
-import models.outputs.CalendarDetailDto;
+import models.outputs.AttendanceDto;
 import models.outputs.CalendarDto;
 import models.outputs.CourseDetailDto;
 import models.outputs.CourseDto;
 import models.outputs.CourseSemesterDto;
 import models.outputs.CourseSemesterSubjectDto;
 import models.outputs.EmployeeDto;
+import models.outputs.SubjectDto;
 
 public class FakeData {
     public static ArrayList<CourseSemesterDto> getCourseDetails(){
@@ -31,10 +30,10 @@ public class FakeData {
         ArrayList<AnnounceDto> announces = new ArrayList<AnnounceDto>();
 
         ArrayList<AnnounceDetailDto> details = new ArrayList<AnnounceDetailDto>();
-        details.add(new AnnounceDetailDto("Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
-        details.add(new AnnounceDetailDto("Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
-        details.add(new AnnounceDetailDto("Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
-        details.add(new AnnounceDetailDto("Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
+        details.add(new AnnounceDetailDto(0,"Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
+        details.add(new AnnounceDetailDto(1,"Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
+        details.add(new AnnounceDetailDto(2,"Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
+        details.add(new AnnounceDetailDto(3,"Nghỉ học","Nghỉ lễ tết nguyên đán nhé."));
         announces.add(new AnnounceDto("Today",details));
         announces.add(new AnnounceDto("Yesterday",details));
         return  announces;
@@ -57,13 +56,14 @@ public class FakeData {
 
         ArrayList<CourseSemesterSubjectDto> courseSemesters = new ArrayList<CourseSemesterSubjectDto>();
         ArrayList<CourseSemesterSubjectDto> courseSemesters1 = new ArrayList<CourseSemesterSubjectDto>();
-        ArrayList<String> subjects = new ArrayList<String>();
-        ArrayList<String> subjects1 = new ArrayList<String>();
+        ArrayList<SubjectDto> subjects = new ArrayList<SubjectDto>();
+        ArrayList<SubjectDto> subjects1 = new ArrayList<SubjectDto>();
 
-        subjects.add("C#");
-        subjects.add("Java");
-        subjects.add("Android");
-        subjects1.add("Android");
+        SubjectDto subjectDto = new SubjectDto("mon hoc",true,true,"C#",5);
+        subjects.add(subjectDto);
+        subjects.add(subjectDto);
+        subjects.add(subjectDto);
+        subjects1.add(subjectDto);
 
         courseSemesters.add(new CourseSemesterSubjectDto("Semester I", subjects));
         courseSemesters.add(new CourseSemesterSubjectDto("Semester II", subjects));
@@ -80,10 +80,10 @@ public class FakeData {
     public static ArrayList<CalendarDto> getCalendars(){
         ArrayList<CalendarDto> calendars = new ArrayList<CalendarDto>();
 
-        ArrayList<CalendarDetailDto> calendarDetails = new ArrayList<CalendarDetailDto>();
-        ArrayList<CalendarDetailDto> calendarDetail1s = new ArrayList<CalendarDetailDto>();
-        ArrayList<Date> dates = new ArrayList<Date>();
-        ArrayList<Date> date1s = new ArrayList<Date>();
+        ArrayList<CalendarDto> calendarDetails = new ArrayList<CalendarDto>();
+        ArrayList<CalendarDto> calendarDetail1s = new ArrayList<CalendarDto>();
+        ArrayList<AttendanceDto> dates = new ArrayList<AttendanceDto>();
+        ArrayList<AttendanceDto> date1s = new ArrayList<AttendanceDto>();
 
 
         Calendar cal = Calendar.getInstance();
@@ -91,40 +91,35 @@ public class FakeData {
         cal.set(Calendar.MONTH, Calendar.FEBRUARY);
         cal.set(Calendar.DAY_OF_MONTH, 10);
 
-        dates.add(cal.getTime());
+        dates.add(new AttendanceDto("status", cal.getTime()));
+
 
         cal.set(Calendar.YEAR, 2019);
         cal.set(Calendar.MONTH, Calendar.FEBRUARY);
         cal.set(Calendar.DAY_OF_MONTH, 20);
-        date1s.add(cal.getTime());
+        date1s.add(new AttendanceDto("status", cal.getTime()));
 
         cal.set(Calendar.YEAR, 2019);
         cal.set(Calendar.MONTH, Calendar.FEBRUARY);
         cal.set(Calendar.DAY_OF_MONTH, 12);
 
-        dates.add(cal.getTime());
+        dates.add(new AttendanceDto("status", cal.getTime()));
 
         cal.set(Calendar.YEAR, 2019);
         cal.set(Calendar.MONTH, Calendar.FEBRUARY);
         cal.set(Calendar.DAY_OF_MONTH, 19);
-        date1s.add(cal.getTime());
+        date1s.add(new AttendanceDto("status", cal.getTime()));
 
         cal.set(Calendar.YEAR, 2019);
         cal.set(Calendar.MONTH, Calendar.FEBRUARY);
         cal.set(Calendar.DAY_OF_MONTH, 14);
 
-        dates.add(cal.getTime());
+        dates.add(new AttendanceDto("status", cal.getTime()));
 
-        calendarDetails.add(new CalendarDetailDto("Ngo Thanh Tung","SQL","Alive","5/10", dates));
-        calendarDetails.add(new CalendarDetailDto("Ngo Thanh Binh","Java","Alive","6/10", date1s));
-        calendarDetail1s.add(new CalendarDetailDto("Ngo Thanh Binh","Java","Alive","6/10", date1s));
+        calendars.add(new CalendarDto(false,"I12","Ngo Thanh Tung","SQL","Alive","5/10", dates));
+        calendars.add(new CalendarDto(true,"I13","Ngo Thanh Binh","Java","Alive","6/10", date1s));
+        calendars.add(new CalendarDto(false,"I14","Ngo Thanh Binh","Java","Alive","6/10", date1s));
 
-        calendars.add(new CalendarDto("Batch130",calendarDetails));
-        calendars.add(new CalendarDto("Batch131",calendarDetail1s));
-        calendars.add(new CalendarDto("Batch132",calendarDetails));
-        calendars.add(new CalendarDto("Batch133",calendarDetails));
-        calendars.add(new CalendarDto("Batch134",calendarDetails));
-        calendars.add(new CalendarDto("Batch135",calendarDetails));
         return calendars;
     }
 }

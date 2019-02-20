@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import sem4.aptech.project.aptech_sem4.R;
 public class FragmentCourse extends Fragment implements BaseFragment{
     private View view;
     private ListView listView;
+    private ProgressBar progressBar;
     private CustomListAdapter<CourseSemesterDto> adapter;
     private InformationController informationController;
     private ArrayList<CourseSemesterDto> items;
@@ -113,25 +115,34 @@ public class FragmentCourse extends Fragment implements BaseFragment{
 
     @Override
     public void getWidget(View v) {
+        progressBar = (ProgressBar) v.findViewById(R.id.progress_circular_fragment_course);
         listView = (ListView) v.findViewById(R.id.lv_course);
     }
 
     @Override
     public void setWidget(){
         listView.setAdapter(adapter);
+        progressBar.setVisibility(View.VISIBLE);
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
                     items = informationController.getCourseDetails();
-                    adapter.setItems(items);
-                    Utils.setListViewHeightBasedOnChildren(listView);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setVisibility(View.GONE);
+                            adapter.setItems(items);
+                            Utils.setListViewHeightBasedOnChildren(listView);
+                        }
+                    });
                 }
                 catch (Exception ex){
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getContext(),getString(R.string.error_message), Toast.LENGTH_LONG);
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(getContext(),getString(R.string.error_message), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

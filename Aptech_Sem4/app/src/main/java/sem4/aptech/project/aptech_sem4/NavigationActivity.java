@@ -1,9 +1,11 @@
 package sem4.aptech.project.aptech_sem4;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import adapter.ViewPagerAdapter;
+import services.CurrentUserService;
 
 public class NavigationActivity extends BaseActivity{
     private ViewPager viewPager;
@@ -17,10 +19,11 @@ public class NavigationActivity extends BaseActivity{
 
     @Override
     protected void init() {
+        isAuthorize();
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new AnnounceActivity(), "Notification");
-        viewPagerAdapter.addFragment(new HomeActivity(), "Home");
-        viewPagerAdapter.addFragment(new InformationActivity(), "Infor");
+        viewPagerAdapter.addFragment(new AnnounceActivity(),"");
+        viewPagerAdapter.addFragment(new HomeActivity(), "");
+        viewPagerAdapter.addFragment(new InformationActivity(), "");
     }
 
     @Override
@@ -33,10 +36,27 @@ public class NavigationActivity extends BaseActivity{
     protected void setWidget() {
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        for (int i = 0; i < tabLayout.getTabCount(); i++)
+        {
+            switch (i){
+                case 0 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_menu_notification); break;
+                case 1 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_menu_home); break;
+                case 2 : tabLayout.getTabAt(i).setIcon(R.drawable.infor_user); break;
+            }
+        }
+        tabLayout.getTabAt(2).select();
     }
 
     @Override
     protected void addListener() {
 
+    }
+
+    private void isAuthorize(){
+        if(CurrentUserService.getToken().isEmpty()){
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

@@ -3,6 +3,8 @@ package sem4.aptech.project.aptech_sem4;
 import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import models.outputs.CourseDto;
 public class CourseActivity extends BaseActivity {
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
+    private ProgressBar progressBar;
     private TabLayout tabLayout;
     private CourseController courseController;
     private ArrayList<CourseDto> items;
@@ -34,10 +37,12 @@ public class CourseActivity extends BaseActivity {
     protected void getWidget() {
         viewPager = (ViewPager) findViewById(R.id.pager_course);
         tabLayout = (TabLayout) findViewById(R.id.tabs_course);
+        progressBar = (ProgressBar) findViewById(R.id.progress_circular_course);
     }
 
     @Override
     protected void setWidget() {
+        progressBar.setVisibility(View.VISIBLE);
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -46,17 +51,25 @@ public class CourseActivity extends BaseActivity {
                     if(items != null){
                         for (CourseDto i : items)
                         {
-                            adapter.addFragment(FragmentActivityCourse.newInstance(i), i.getName());
+                            adapter.addFragment(FragmentActivityCourse.newInstance(i), i.getCourseCode());
                         }
                     }
-                    viewPager.setAdapter(adapter);
-                    tabLayout.setupWithViewPager(viewPager);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setVisibility(View.GONE);
+                            viewPager.setAdapter(adapter);
+                            tabLayout.setupWithViewPager(viewPager);
+                        }
+                    });
                 }
                 catch (Exception ex){
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),getString(R.string.error_message), Toast.LENGTH_LONG);
+                            System.out.print(ex.getMessage());
+                            Toast.makeText(getApplicationContext(),getString(R.string.error_message), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
