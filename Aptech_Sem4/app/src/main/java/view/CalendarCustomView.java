@@ -90,6 +90,12 @@ public class CalendarCustomView extends LinearLayout {
         currentDay.setText(convertDay(dayOfWeek));
     }
 
+    private void setDateWidget(Calendar cal){
+        currentDate.setText(formatter.format(cal.getTime()));
+        currentYear.setText(cal.get(Calendar.YEAR) + "");
+        currentDay.setText(convertDay(cal.get(Calendar.DAY_OF_WEEK)));
+    }
+
     private String convertDay(int dayOfWeek){
         switch (dayOfWeek){
             case 2: return "MonDay";
@@ -107,7 +113,7 @@ public class CalendarCustomView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 cal = Calendar.getInstance(Locale.ENGLISH);
-                currentDate.setText(formatter.format(cal.getTime()));
+                setDateWidget(cal);
                 setUpCalendarAdapter();
                 if (data != null)
                 {
@@ -125,8 +131,10 @@ public class CalendarCustomView extends LinearLayout {
             public void onClick(View v) {
                 cal.add(Calendar.MONTH, -1);
                 if(cal.get(Calendar.MONTH) == month && cal.get(Calendar.YEAR) == year){
-                    currentDate.setText(formatter.format(cal.getTime()));
+                    //currentDate.setText(formatter.format(cal.getTime()));
+                    setDateWidget(cal);
                 }else {
+                    setDateWidget(cal);
                     currentDate.setText(formatter2.format(cal.getTime()));
                 }
                 setUpCalendarAdapter();
@@ -139,10 +147,12 @@ public class CalendarCustomView extends LinearLayout {
             public void onClick(View v) {
                 cal.add(Calendar.MONTH, 1);
                 if(cal.get(Calendar.MONTH) == month && cal.get(Calendar.YEAR) == year){
-                    currentDate.setText(formatter.format(cal.getTime()));
+                    setDateWidget(cal);
                 }else {
+                    setDateWidget(cal);
                     currentDate.setText(formatter2.format(cal.getTime()));
                 }
+
                 setUpCalendarAdapter();
             }
         });

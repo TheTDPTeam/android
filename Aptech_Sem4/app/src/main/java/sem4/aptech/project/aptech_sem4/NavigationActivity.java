@@ -21,9 +21,9 @@ public class NavigationActivity extends BaseActivity{
     protected void init() {
         isAuthorize();
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new AnnounceActivity(),"");
         viewPagerAdapter.addFragment(new HomeActivity(), "");
         viewPagerAdapter.addFragment(new InformationActivity(), "");
+        //viewPagerAdapter.addFragment(new AnnounceActivity(),"");
     }
 
     @Override
@@ -39,12 +39,12 @@ public class NavigationActivity extends BaseActivity{
         for (int i = 0; i < tabLayout.getTabCount(); i++)
         {
             switch (i){
-                case 0 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_menu_notification); break;
-                case 1 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_menu_home); break;
-                case 2 : tabLayout.getTabAt(i).setIcon(R.drawable.infor_user); break;
+                case 0 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_home); break;
+                case 1 : tabLayout.getTabAt(i).setIcon(R.drawable.infor_user); break;
+                //case 2 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_infor); break;
             }
         }
-        tabLayout.getTabAt(2).select();
+        tabLayout.getTabAt(0).select();
     }
 
     @Override

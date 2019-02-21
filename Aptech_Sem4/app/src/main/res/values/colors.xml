@@ -15,4 +15,11 @@
 
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
+
+
+    <color name="currentDate">#f75625</color>
+    <color name="notSelectedMonth">#eaeaea</color>
+    <color name="selectedMonth">#c6c4c4</color>
+    <color name="calendarNotYet">#4ee099</color>
+    <color name="error">#e0d64e</color>
 </resources>

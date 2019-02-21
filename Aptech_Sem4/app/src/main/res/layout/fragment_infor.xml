@@ -18,14 +18,13 @@
             android:background="@drawable/infor_email"/>
         <EditText
             android:enabled="false"
-            android:textColorHint="@color/orange"
+            android:backgroundTint="@color/orange"
             android:id="@+id/et_info_mail"
             android:paddingLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="9"
             android:text=""
-            android:textStyle="bold"
             android:gravity="fill_vertical"/>
     </LinearLayout>
 
@@ -42,15 +41,22 @@
             android:layout_gravity="center"
             android:background="@drawable/infor_user"/>
         <EditText
-            android:enabled="false"
-            android:textColorHint="@color/orange"
-            android:id="@+id/et_info_name"
+            android:backgroundTint="@color/orange"
+            android:id="@+id/et_info_firstName"
             android:paddingLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="9"
+            android:layout_weight="4"
             android:text=""
-            android:textStyle="bold"
+            android:gravity="fill_vertical"/>
+        <EditText
+            android:backgroundTint="@color/orange"
+            android:id="@+id/et_info_Lastname"
+            android:paddingLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text=""
             android:gravity="fill_vertical"/>
     </LinearLayout>
 
@@ -67,21 +73,39 @@
             android:layout_gravity="center"
             android:background="@drawable/infor_phone"/>
         <EditText
-            android:enabled="false"
-            android:textColorHint="@color/orange"
+            android:backgroundTint="@color/orange"
             android:id="@+id/et_info_phone"
             android:paddingLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="9"
             android:text=""
-            android:textStyle="bold"
             android:gravity="fill_vertical"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_weight="5"
         android:layout_height="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="7">
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btn_update"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Update"/>
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btn_reset"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Reset"/>
+        </LinearLayout>
         <ProgressBar
             android:id="@+id/progress_circular_fragment_infor"
             android:layout_width="70dp"

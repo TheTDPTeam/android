@@ -11,7 +11,9 @@ import java.util.Map;
 import adapter.FakeData;
 import constant.UrlAPI;
 import http.AbstractHttpApi;
+import models.inputs.UpdateUserDetailDto;
 import models.outputs.CourseSemesterDto;
+import models.outputs.LearningProgressInfoDto;
 import models.outputs.UserDetail;
 import realm.reponsitories.UserRealmRepository;
 
@@ -38,8 +40,22 @@ public class InformationService extends AbstractHttpApi {
         String response = executeHttpGet(UrlAPI.myDetail,header,null);
         try{
             UserDetail userDetail = gson.fromJson(response, UserDetail.class);
-            //userRealmRepository.saveAsync(userDetail);
-            //UserDetail userDetail1 = userRealmRepository.getUserDetailById(userDetail.getId());
+            return userDetail;
+        }catch (Exception ex){
+            throw new Exception();
+        }
+
+    }
+
+    public UserDetail update(UpdateUserDetailDto dto) throws Exception {
+        Map<String, String> header = new HashMap<String, String>();
+        header.put("Authorization","Bearer " + CurrentUserService.getToken());
+
+        String jsonObject = gson.toJson(dto);
+        String response = executeHttpPost(UrlAPI.updateUser,header,jsonObject);
+
+        try{
+            UserDetail userDetail = gson.fromJson(response, UserDetail.class);
             return userDetail;
         }catch (Exception ex){
             throw new Exception();
@@ -53,10 +69,22 @@ public class InformationService extends AbstractHttpApi {
         String response = executeHttpGet(UrlAPI.myScore,header,null);
         try{
             ArrayList<CourseSemesterDto> courses = gson.fromJson(response, new TypeToken<List<CourseSemesterDto>>(){}.getType());
-            //ArrayList<CourseSemesterDto> courses = FakeData.getCourseDetails();
             return courses;
         }catch (Exception ex){
             throw new Exception();
         }
+    }
+
+    public LearningProgressInfoDto getLastSemesterSocore() throws Exception {
+        Map<String, String> header = new HashMap<String, String>();
+        header.put("Authorization","Bearer " + CurrentUserService.getToken());
+        String response = executeHttpGet(UrlAPI.progressInfo,header,null);
+        try{
+            LearningProgressInfoDto learningProgressInfo = gson.fromJson(response, LearningProgressInfoDto.class);
+            return learningProgressInfo;
+        }catch (Exception ex){
+            throw new Exception();
+        }
+
     }
 }

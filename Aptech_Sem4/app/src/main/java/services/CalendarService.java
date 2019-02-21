@@ -1,12 +1,13 @@
 package services;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import adapter.FakeData;
 import constant.UrlAPI;
 import http.AbstractHttpApi;
 import models.outputs.CalendarDto;
@@ -30,8 +31,7 @@ public class CalendarService extends AbstractHttpApi {
         header.put("Authorization","Bearer " + CurrentUserService.getToken());
         String response = executeHttpGet(UrlAPI.calendar,header,null);
         try{
-            //ArrayList<CalendarDto> calendars = gson.fromJson(response, new TypeToken<List<CalendarDto>>(){}.getType());
-            ArrayList<CalendarDto> calendars = FakeData.getCalendars();
+            ArrayList<CalendarDto> calendars = gson.fromJson(response, new TypeToken<List<CalendarDto>>(){}.getType());
             return calendars;
         }catch (Exception ex){
             throw new Exception();

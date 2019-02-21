@@ -1,35 +1,16 @@
-package models.outputs;
+package models.inputs;
 
 import java.io.Serializable;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
-public class UserDetail extends RealmObject implements Serializable {
-    @PrimaryKey
-    private int id;
-    private String email;
+public class UpdateUserDetailDto implements Serializable {
     private String firstName;
     private String lastName;
     private String phone;
 
-    public UserDetail() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public UpdateUserDetailDto(String firstName, String lastName, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
     }
 
     public String getFirstName() {

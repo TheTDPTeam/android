@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Student Management</string>
     <string name="error_message">Đã xảy ra lỗi.</string>
+    <string name="success_message">Thành công.</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

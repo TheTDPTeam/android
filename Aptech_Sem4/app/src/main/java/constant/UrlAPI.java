@@ -10,4 +10,6 @@ public class UrlAPI {
     public static final String staffs = domain + "api/staffs";
     public static final String courses = domain + "api/courses";
     public static final String calendar = domain + "api/my-calendar";
+    public static final String progressInfo = domain + "api/learningProgressInfo";
+    public static final String updateUser = domain + "api/users/updateDetails";
 }

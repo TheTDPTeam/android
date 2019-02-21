@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import constant.CalendarStatus;
 import models.outputs.AttendanceDto;
 import sem4.aptech.project.aptech_sem4.R;
 
@@ -50,13 +52,13 @@ public class GridAdapter extends ArrayAdapter {
         }
 
         if(currentDate.get(Calendar.DAY_OF_MONTH) == dayValue && (currentDate.get(Calendar.MONTH) + 1) == displayMonth && currentDate.get(Calendar.YEAR) == displayYear){
-            view.setBackgroundColor(Color.parseColor("#f75625"));
+            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.currentDate));
         }
         else if(displayMonth == currentMonth && displayYear == currentYear){
-            view.setBackgroundColor(Color.parseColor("#c6c4c4"));
+            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selectedMonth));
         }
         else {
-            view.setBackgroundColor(Color.parseColor("#eaeaea"));
+            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.notSelectedMonth));
         }
 
         //Add day to calendar
@@ -70,7 +72,17 @@ public class GridAdapter extends ArrayAdapter {
             noteCalendar.setTime(attendances.get(i).getCheckingDate());
             if(dayValue == noteCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == noteCalendar.get(Calendar.MONTH) + 1
                     && displayYear == noteCalendar.get(Calendar.YEAR)){
-                view.setBackgroundColor(Color.parseColor("#51ef39"));
+
+                switch (attendances.get(i).getStatus()){
+                    case CalendarStatus.notYet: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
+                    case CalendarStatus.notAttended: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
+                    case CalendarStatus.authorizedLeave: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
+                    case CalendarStatus.unauthorizedLeave: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
+                    case CalendarStatus.attended: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
+                    default: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error)); break;
+                }
+
+
                 cellValue.setText(attendances.get(i).getCheckingDate().toString());
             }
         }

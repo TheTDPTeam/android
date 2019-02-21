@@ -19,10 +19,9 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/btn_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FF00"
-                android:text="Logout"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/icon_logout"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/white"/>
         </RelativeLayout>
@@ -37,10 +36,11 @@
             android:textSize="@dimen/textsize_average_score"
             android:textStyle="bold" />
         <TextView
+            android:id="@+id/tv_infor_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="6.25"
+            android:text="0.00"
             android:paddingBottom="50dp"
             android:textStyle="bold"
             android:textSize="@dimen/infor_textsize_big"/>
@@ -63,6 +63,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/infor_textsize_big"/>
                 <TextView
+                    android:id="@+id/tv_infor_semester"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textAlignment="center"
@@ -85,10 +86,11 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/infor_textsize_big"/>
                 <TextView
+                    android:id="@+id/tv_infor_credit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textAlignment="center"
-                    android:text="-1.25"
+                    android:text="0.00"
                     android:textStyle="bold"
                     android:textSize="@dimen/infor_textsize_big"/>
             </LinearLayout>

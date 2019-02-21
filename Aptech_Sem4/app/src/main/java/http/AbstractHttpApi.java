@@ -188,7 +188,6 @@ public abstract class AbstractHttpApi{
         StringBuilder response = new StringBuilder();
         // checks server's status code first
         int status = connection.getResponseCode();
-//        if (status == HttpURLConnection.HTTP_OK) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     (status == HttpURLConnection.HTTP_OK || status == HttpURLConnection.HTTP_ACCEPTED)? connection.getInputStream() : connection.getErrorStream()));

@@ -1,7 +1,10 @@
 package controllers;
 
 import java.util.ArrayList;
+
+import models.inputs.UpdateUserDetailDto;
 import models.outputs.CourseSemesterDto;
+import models.outputs.LearningProgressInfoDto;
 import models.outputs.UserDetail;
 import services.InformationService;
 
@@ -24,7 +27,15 @@ public class InformationController {
         return informationService.get();
     }
 
+    public UserDetail update(UpdateUserDetailDto dto) throws Exception {
+        return informationService.update(dto);
+    }
+
     public ArrayList<CourseSemesterDto> getCourseDetails() throws Exception{
         return informationService.getCourseDetails();
+    }
+
+    public LearningProgressInfoDto getLastSemesterSocore() throws Exception{
+        return informationService.getLastSemesterSocore();
     }
 }
