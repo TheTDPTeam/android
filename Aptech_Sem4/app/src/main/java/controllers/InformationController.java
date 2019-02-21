@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 
+import models.inputs.ChangePassworDto;
 import models.inputs.UpdateUserDetailDto;
 import models.outputs.CourseSemesterDto;
 import models.outputs.LearningProgressInfoDto;
@@ -29,6 +30,10 @@ public class InformationController {
 
     public UserDetail update(UpdateUserDetailDto dto) throws Exception {
         return informationService.update(dto);
+    }
+
+    public boolean changePassword(ChangePassworDto dto) throws Exception {
+        return informationService.changePassword(dto);
     }
 
     public ArrayList<CourseSemesterDto> getCourseDetails() throws Exception{

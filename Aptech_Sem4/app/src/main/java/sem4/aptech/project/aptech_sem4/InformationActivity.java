@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import controllers.InformationController;
 import fragments.BaseFragment;
 import fragments.FragmentCourse;
 import fragments.FragmentInfor;
+import models.inputs.ChangePassworDto;
 import models.outputs.LearningProgressInfoDto;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -29,7 +32,7 @@ public class InformationActivity extends Fragment implements BaseFragment {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private ViewPagerAdapter viewPagerAdapter;
-    private Button btn_logout;
+    private Button btn_logout, btn_change;
     private View view;
     private TextView tv_score, tv_semester, tv_credit;
     private InformationController informationController;
@@ -67,6 +70,7 @@ public class InformationActivity extends Fragment implements BaseFragment {
         tv_semester = (TextView) v.findViewById(R.id.tv_infor_semester);
         tv_score = (TextView) v.findViewById(R.id.tv_infor_score);
         tv_credit = (TextView) v.findViewById(R.id.tv_infor_credit);
+        btn_change = (Button) v.findViewById(R.id.btn_changePass);
     }
 
     @Override
@@ -140,6 +144,83 @@ public class InformationActivity extends Fragment implements BaseFragment {
 
                 AlertDialog alert = builder.create();
                 alert.show();
+            }
+        });
+
+        btn_change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+                View promptView = layoutInflater.inflate(R.layout.prompt_changepassword, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                alertDialogBuilder.setView(promptView);
+
+                final EditText newPass = (EditText) promptView.findViewById(R.id.et_newPass);
+                final EditText rePass = (EditText) promptView.findViewById(R.id.et_rePass);
+                final Button btn_cancel = (Button) promptView.findViewById(R.id.btn_cancel);
+                final Button btn_ok = (Button) promptView.findViewById(R.id.btn_OK);
+                final ProgressBar progressBar = (ProgressBar) promptView.findViewById(R.id.progress_circular_changepass);
+                // setup a dialog window
+                AlertDialog dialog = alertDialogBuilder
+                        .setCancelable(false)
+                        .create();
+
+                btn_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                btn_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(newPass.getText().toString().length() < 6){
+                            Toast.makeText(getContext(),getString(R.string.pw_length), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(!newPass.getText().toString().equals(rePass.getText().toString())){
+                            Toast.makeText(getContext(),getString(R.string.rpw_correct), Toast.LENGTH_SHORT).show();
+                        } else {
+                            progressBar.setVisibility(View.VISIBLE);
+                            AsyncTask.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        if(informationController.changePassword(new ChangePassworDto(newPass.getText().toString(),rePass.getText().toString()))){
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(getContext(),getString(R.string.success_message), Toast.LENGTH_SHORT).show();
+                                                    progressBar.setVisibility(View.GONE);
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                        }else {
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(getContext(),getString(R.string.error_message), Toast.LENGTH_SHORT).show();
+                                                    progressBar.setVisibility(View.GONE);
+                                                }
+                                            });
+                                        }
+                                    } catch (Exception e) {
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(getContext(),getString(R.string.error_message), Toast.LENGTH_SHORT).show();
+                                                progressBar.setVisibility(View.GONE);
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+                dialog.show();
             }
         });
     }

@@ -11,6 +11,7 @@ import java.util.Map;
 import adapter.FakeData;
 import constant.UrlAPI;
 import http.AbstractHttpApi;
+import models.inputs.ChangePassworDto;
 import models.inputs.UpdateUserDetailDto;
 import models.outputs.CourseSemesterDto;
 import models.outputs.LearningProgressInfoDto;
@@ -57,6 +58,21 @@ public class InformationService extends AbstractHttpApi {
         try{
             UserDetail userDetail = gson.fromJson(response, UserDetail.class);
             return userDetail;
+        }catch (Exception ex){
+            throw new Exception();
+        }
+
+    }
+
+    public boolean changePassword(ChangePassworDto dto) throws Exception {
+        Map<String, String> header = new HashMap<String, String>();
+        header.put("Authorization","Bearer " + CurrentUserService.getToken());
+
+        String jsonObject = gson.toJson(dto);
+        String response = executeHttpPost(UrlAPI.changePassword,header,jsonObject);
+
+        try{
+            return true;
         }catch (Exception ex){
             throw new Exception();
         }

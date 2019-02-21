@@ -23,7 +23,7 @@ public class NavigationActivity extends BaseActivity{
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new HomeActivity(), "");
         viewPagerAdapter.addFragment(new InformationActivity(), "");
-        //viewPagerAdapter.addFragment(new AnnounceActivity(),"");
+        viewPagerAdapter.addFragment(new AnnounceActivity(),"");
     }
 
     @Override
@@ -41,7 +41,7 @@ public class NavigationActivity extends BaseActivity{
             switch (i){
                 case 0 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_home); break;
                 case 1 : tabLayout.getTabAt(i).setIcon(R.drawable.infor_user); break;
-                //case 2 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_infor); break;
+                case 2 : tabLayout.getTabAt(i).setIcon(R.drawable.icon_infor); break;
             }
         }
         tabLayout.getTabAt(0).select();

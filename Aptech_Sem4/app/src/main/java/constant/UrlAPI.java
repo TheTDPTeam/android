@@ -12,4 +12,5 @@ public class UrlAPI {
     public static final String calendar = domain + "api/my-calendar";
     public static final String progressInfo = domain + "api/learningProgressInfo";
     public static final String updateUser = domain + "api/users/updateDetails";
+    public static final String changePassword = domain + "api/users/changePassword";
 }

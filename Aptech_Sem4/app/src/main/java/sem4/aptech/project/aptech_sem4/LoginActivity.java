@@ -16,6 +16,7 @@ public class LoginActivity extends BaseActivity{
     private EditText edt_password;
     private EditText edt_username;
     private LoginService loginService;
+    private SharedPreferences pre;
 
     @Override
     protected void setContentView() {
@@ -24,6 +25,7 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     protected void init() {
+        pre = getSharedPreferences ("login",MODE_PRIVATE);
         loginService = LoginService.getInstance();
         getSharedPreferences();
     }
@@ -37,7 +39,8 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     protected void setWidget() {
-
+        String user = pre.getString("user", "");
+        edt_username.setText(user);
     }
 
     @Override
@@ -90,7 +93,6 @@ public class LoginActivity extends BaseActivity{
     }
 
     private void saveSharedPreferences(){
-        SharedPreferences pre = getSharedPreferences("login", MODE_PRIVATE);
         SharedPreferences.Editor edit= pre.edit();
         edit.putString("user", edt_username.getText().toString());
         edit.putString("password", edt_password.getText().toString());
@@ -98,7 +100,6 @@ public class LoginActivity extends BaseActivity{
     }
 
     private void getSharedPreferences(){
-        SharedPreferences pre=getSharedPreferences ("login",MODE_PRIVATE);
         String user = pre.getString("user", "");
         String password = pre.getString("password", "");
 

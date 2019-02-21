@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Student Management</string>
-    <string name="error_message">Đã xảy ra lỗi.</string>
-    <string name="success_message">Thành công.</string>
+    <string name="error_message">Failed.</string>
+    <string name="success_message">Succeed.</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -42,4 +42,9 @@
     <string name="fri">FRI</string>
     <string name="sat">SAT</string>
     <string name="last_date">30</string>
+
+
+    <!-- Change password -->
+    <string name="pw_length">Password min length is 6</string>
+    <string name="rpw_correct">RePassword is not correct</string>
 </resources>
