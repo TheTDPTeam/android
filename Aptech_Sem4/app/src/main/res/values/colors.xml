@@ -21,5 +21,10 @@
     <color name="notSelectedMonth">#eaeaea</color>
     <color name="selectedMonth">#c6c4c4</color>
     <color name="calendarNotYet">#4ee099</color>
+    <color name="calendarAttended">#9966CC</color>
+    <color name="calendarNotAttended">#7FFFD4</color>
+    <color name="calendarAuthorizedLeave">#007FFF</color>
+    <color name="calendarUnauthorizedLeave">#ACE1AF</color>
+    <color name="calendarSkipped">#FF7F50</color>
     <color name="error">#e0d64e</color>
 </resources>

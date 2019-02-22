@@ -75,10 +75,11 @@ public class GridAdapter extends ArrayAdapter {
 
                 switch (attendances.get(i).getStatus()){
                     case CalendarStatus.notYet: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
-                    case CalendarStatus.notAttended: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
-                    case CalendarStatus.authorizedLeave: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
-                    case CalendarStatus.unauthorizedLeave: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
-                    case CalendarStatus.attended: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotYet)); break;
+                    case CalendarStatus.notAttended: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarNotAttended)); break;
+                    case CalendarStatus.authorizedLeave: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarAuthorizedLeave)); break;
+                    case CalendarStatus.unauthorizedLeave: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarUnauthorizedLeave)); break;
+                    case CalendarStatus.attended: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarAttended)); break;
+                    case CalendarStatus.skipped: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.calendarSkipped)); break;
                     default: view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error)); break;
                 }
 
