@@ -25,7 +25,7 @@
                     android:id="@+id/btn_changePass"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/icon_changePass"
+                    android:background="@drawable/icon_changepass"
                     android:textColor="@color/white"/>
                 <Button
                     android:id="@+id/btn_logout"

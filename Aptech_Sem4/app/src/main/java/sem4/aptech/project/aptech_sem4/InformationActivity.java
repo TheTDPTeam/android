@@ -18,6 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 import adapter.ViewPagerAdapter;
 import controllers.InformationController;
 import fragments.BaseFragment;
@@ -85,8 +87,9 @@ public class InformationActivity extends Fragment implements BaseFragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tv_credit.setText(learningProgressInfo.getGradeNeededToGetNextLevel() + "");
-                            tv_score.setText(learningProgressInfo.getCumulativeGradePointAverage() + "");
+                            DecimalFormat df = new DecimalFormat("0.00");
+                            tv_credit.setText(df.format(learningProgressInfo.getGradeNeededToGetNextLevel()));
+                            tv_score.setText(df.format(learningProgressInfo.getCumulativeGradePointAverage()));
 
                             String semester = "Unknown";
                             switch (learningProgressInfo.getLatestSemester()){
